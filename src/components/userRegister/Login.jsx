@@ -22,11 +22,12 @@ const Login = () => {
         password,
       });
 
-      const code = response.data.code;
+      const token = response.data.token;
 
-      localStorage.setItem('code', code);
+      localStorage.setItem('token', token);
 
       console.log("Login bem-sucedido", response.data)
+      window.location.href = '/home';
     } catch (error) {
       setError("Falha no login");
     }
@@ -61,21 +62,21 @@ const Login = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
+
+          {error && <p> {error} </p>}
+
+          <div className="checkpoint">
+            <input type="checkbox"
+              className='input-checkbox'
+              id='checkpoint'
+            />
+
+            <p>Lembre deste dispositivo <a href="/esqueceuSenha">Esqueceu a senha?</a></p>
+          </div>
+          <button type='submit' >
+            Logar
+          </button>
         </form>
-
-        {error && <p> {error} </p>}
-
-        <div className="checkpoint">
-          <input type="checkbox"
-            className='input-checkbox'
-            id='checkpoint'
-          />
-
-          <p>Lembre deste dispositivo <a href="/esqueceuSenha">Esqueceu a senha?</a></p>
-        </div>
-        <button type='submit' >
-          Logar
-        </button>
 
 
       </div>
